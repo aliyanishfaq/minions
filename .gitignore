@@ -45,3 +45,6 @@ data/
 .coverage
 htmlcov/
 .pytest_cache/ 
+
+# docs
+financebench_data/

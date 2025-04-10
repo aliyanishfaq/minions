@@ -228,7 +228,9 @@ def read_file(file_path):
                         page = pdf_reader.pages[page_num]
                         text += f"\n--- Page {page_num + 1} ---\n"
                         text += page.extract_text()
-                    return text
+                with open(f"page_text.txt", "w") as f:
+                    f.write(text)
+                return text
             except ImportError:
                 return "Error: PyPDF2 library not installed. Install with 'pip install PyPDF2' to read PDF files."
             except Exception as e:
@@ -1128,7 +1130,7 @@ if __name__ == "__main__":
         model_name="gpt-4o",
     )
 
-    local_client = OllamaClient(model_name="qwen2.5:3b")
+    local_client = OllamaClient(model_name="qwen2.5:3b", tool_calling=True)
 
     context = """Local Filesystem"""
     task = "Based on my Desktop folder, how many times did I order from Zareens?"
